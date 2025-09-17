@@ -1,0 +1,53 @@
+package com.example.trabalho;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ConfigActivity extends AppCompatActivity {
+
+    private EditText usernameInput, passwordInput, passwordConfirmInput;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_config);
+  //      usernameInput = findViewById(R.id.usernameInput);
+   //     passwordInput = findViewById(R.id.passwordInput);
+   //     passwordConfirmInput = findViewById(R.id.passwordConfirmInput);
+
+   //     Button confirmButton = findViewById(R.id.confirmButton);
+   //     Button cancelButton = findViewById(R.id.cancelButton);
+
+        //confirmButton.setOnClickListener(v -> validateAndSaveCredentials());
+      //  cancelButton.setOnClickListener(v -> finish());
+    }
+
+    private void validateAndSaveCredentials() {
+        String newUsername = usernameInput.getText().toString();
+        String newPassword = passwordInput.getText().toString();
+        String confirmPassword = passwordConfirmInput.getText().toString();
+
+        if (newUsername.isEmpty()) {
+            Toast.makeText(this, "O nome de usuário não pode ser vazio.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (newPassword.isEmpty() || !newPassword.equals(confirmPassword)) {
+            Toast.makeText(this, "A senha deve ser informada duas vezes e as duas senhas devem ser iguais.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (newPassword.length() < 8) {
+            Toast.makeText(this, "A senha deve possuir no mínimo 8 caracteres.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //SharedPreferencesManager.saveCredentials(this, newUsername, newPassword);
+        Toast.makeText(this, "Credenciais atualizadas com sucesso!", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+}
